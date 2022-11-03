@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentsApi", "DocumentsApi.csproj", "{42E714EA-8F8D-4215-ACBB-415D874021FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DocumentsApi", "DocumentsApi.csproj", "{42E714EA-8F8D-4215-ACBB-415D874021FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocumentsApi.Database", "..\DocumentsApi.Database\DocumentsApi.Database.csproj", "{111B9FD2-9449-47EB-8C0D-C8E8D597944E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{42E714EA-8F8D-4215-ACBB-415D874021FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42E714EA-8F8D-4215-ACBB-415D874021FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42E714EA-8F8D-4215-ACBB-415D874021FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{111B9FD2-9449-47EB-8C0D-C8E8D597944E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{111B9FD2-9449-47EB-8C0D-C8E8D597944E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{111B9FD2-9449-47EB-8C0D-C8E8D597944E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{111B9FD2-9449-47EB-8C0D-C8E8D597944E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
