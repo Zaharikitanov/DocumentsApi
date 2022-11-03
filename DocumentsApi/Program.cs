@@ -1,4 +1,6 @@
 using DocumentsApi.Database;
+using DocumentsApi.Services;
+using DocumentsApi.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace DocumentsApi
@@ -21,7 +23,7 @@ namespace DocumentsApi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<DocumentsApiContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("DocumentsApi.Database")));
-            //builder.Services.AddScoped<ICitiesService, CitiesService>();
+            builder.Services.AddScoped<IDocumentsService, DocumentsService>();
 
             var app = builder.Build();
 
