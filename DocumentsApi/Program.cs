@@ -29,6 +29,7 @@ namespace DocumentsApi
             //Used only for the initial start of the project
             //builder.Services.SetupDatabase(connection);
 
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -37,6 +38,7 @@ namespace DocumentsApi
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseCors(options => options.WithOrigins("*").WithHeaders("*").AllowAnyMethod());
 
             app.UseHttpsRedirection();
 
