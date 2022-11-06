@@ -25,6 +25,13 @@ namespace DocumentsApi
             builder.Services.AddDbContext<DocumentsApiContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("DocumentsApi.Database")));
             builder.Services.AddScoped<IDocumentsService, DocumentsService>();
 
+            var optionsBuilder = new DbContextOptionsBuilder<DocumentsApiContext>();
+            optionsBuilder.UseSqlServer(connection);
+
+            var db = new DocumentsApiContext(optionsBuilder.Options);
+            db.Database.EnsureDeleted();
+            db.Database.Migrate();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
