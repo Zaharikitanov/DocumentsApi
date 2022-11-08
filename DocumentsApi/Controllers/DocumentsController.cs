@@ -1,4 +1,5 @@
-﻿using DocumentsApi.Services.Interfaces;
+﻿using DocumentsApi.Database.Models;
+using DocumentsApi.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DocumentsApi.Controllers
@@ -7,11 +8,11 @@ namespace DocumentsApi.Controllers
     [ApiController]
     public class DocumentsController : ControllerBase
     {
-        private readonly IDocumentsService _service;
+        private readonly IDocumentsRepository _repository;
 
-        public DocumentsController(IDocumentsService service)
+        public DocumentsController(IDocumentsRepository repository)
         {
-            _service = service;
+            _repository = repository;
         }
 
         [HttpGet("getAll")]
@@ -19,8 +20,21 @@ namespace DocumentsApi.Controllers
         {
             try
             {
-                var result = await _service.GetAllAsync();
-                return Ok(result);
+                return Ok(await _repository.GetAllAsync());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Document>> Create(Document document)
+        {
+            try
+            {
+                document.Id = Guid.NewGuid();
+                return CreatedAtAction("CreateDocument", await _repository.CreateAsync(document));
             }
             catch (Exception ex)
             {

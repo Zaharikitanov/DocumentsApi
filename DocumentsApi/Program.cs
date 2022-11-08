@@ -1,7 +1,6 @@
 using DocumentsApi.Database;
-using DocumentsApi.Extensions;
-using DocumentsApi.Services;
-using DocumentsApi.Services.Interfaces;
+using DocumentsApi.Repository;
+using DocumentsApi.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace DocumentsApi
@@ -24,7 +23,7 @@ namespace DocumentsApi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<DocumentsApiContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("DocumentsApi.Database")));
-            builder.Services.AddScoped<IDocumentsService, DocumentsService>();
+            builder.Services.AddScoped<IDocumentsRepository, DocumentsRepository>();
 
             //Used only for the initial start of the project
             //builder.Services.SetupDatabase(connection);
