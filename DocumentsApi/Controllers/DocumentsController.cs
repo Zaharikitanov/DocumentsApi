@@ -34,7 +34,7 @@ namespace DocumentsApi.Controllers
             try
             {
                 document.Id = Guid.NewGuid();
-                return CreatedAtAction("CreateDocument", await _repository.CreateAsync(document));
+                return CreatedAtAction("Create", await _repository.CreateAsync(document));
             }
             catch (Exception ex)
             {
