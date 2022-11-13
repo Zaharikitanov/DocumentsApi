@@ -12,3 +12,7 @@ Versions should be checked while pulling latest RabbitMQ image.
 ### Setup
 - items in the prerequsites section should be installed
 - project should be downloaded into your local machine
+
+### Resources
+* [How to Use RabbitMQ in ASP NET Core](https://www.freecodespot.com/blog/use-rabbitmq-in-asp-net-core/)
+* [ASPNET_Core-RabitMQ-Demo](https://github.com/coderbugzz/ASPNET_Core-RabitMQ-Demo)
