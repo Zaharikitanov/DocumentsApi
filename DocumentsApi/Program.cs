@@ -1,6 +1,8 @@
 using DocumentsApi.Database;
 using DocumentsApi.Repository;
 using DocumentsApi.Repository.Interfaces;
+using DocumentsApi.Services;
+using DocumentsApi.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace DocumentsApi
@@ -24,6 +26,7 @@ namespace DocumentsApi
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<DocumentsApiContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("DocumentsApi.Database")));
             builder.Services.AddScoped<IDocumentsRepository, DocumentsRepository>();
+            builder.Services.AddScoped<IMessageProducer, RabbitMQProducer>();
 
             //Used only for the initial start of the project
             //builder.Services.SetupDatabase(connection);
