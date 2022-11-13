@@ -1,0 +1,14 @@
+# DocumentsApi
+
+### Prerequisites
+* [Visual Studio](https://visualstudio.microsoft.com/vs/) 2022 or later.
+* [Sql Server Express](https://www.microsoft.com/en-us/download/details.aspx?id=55994)
+* [Node.js](https://nodejs.org/en/)
+* [Docker](https://www.docker.com/)
+* RabbitMQ - after docker gets downloaded the RabbitMQ image should be pulled through CMD: <pre>docker pull rabbitmq</pre>
+In order to access the admin panel in docker, the following command should be run in CMD: <pre>docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.9-management</pre>
+Versions should be checked while pulling latest RabbitMQ image.
+
+### Setup
+- items in the prerequsites section should be installed
+- project should be downloaded into your local machine
