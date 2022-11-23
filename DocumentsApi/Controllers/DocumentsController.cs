@@ -1,8 +1,10 @@
 ﻿using DocumentsApi.Database.Models;
+using DocumentsApi.Messages;
 using DocumentsApi.Repository.Interfaces;
 using DocumentsApi.Services;
 using DocumentsApi.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using STP.Lsb.Impl;
 
 namespace DocumentsApi.Controllers
 {
@@ -11,12 +13,12 @@ namespace DocumentsApi.Controllers
     public class DocumentsController : ControllerBase
     {
         private readonly IDocumentsRepository _repository;
-        private readonly IMessageProducer _messagePublisher;
+        private readonly ICloudBus _bus;
 
-        public DocumentsController(IDocumentsRepository repository, IMessageProducer messagePublisher)
+        public DocumentsController(IDocumentsRepository repository, ICloudBus bus)
         {
             _repository = repository;
-            _messagePublisher = messagePublisher;
+            _bus = bus;
         }
 
         [HttpGet("getAll")]
@@ -38,7 +40,17 @@ namespace DocumentsApi.Controllers
             try
             {
                 document.Id = Guid.NewGuid();
-                _messagePublisher.SendMessage(document);
+                _bus.Publish(
+                    message: new DocumentBusMessage
+                    {
+                        MessageId = Guid.NewGuid().ToString("D"),
+                        DocumentId = document.Id,
+                        DocumentName = document.DocumentName,
+                        Version = document.Version,
+                        FileName = document.FileName,
+                        FileSize = document.FileSize,
+                    }, 
+                    expiration: ExpirationBase.MaxExpiration);
 
                 return CreatedAtAction("Create", await _repository.CreateAsync(document));
             }
