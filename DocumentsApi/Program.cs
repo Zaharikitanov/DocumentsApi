@@ -1,4 +1,5 @@
 using DocumentsApi.Database;
+//using DocumentsApi.Handlers;
 using DocumentsApi.Repository;
 using DocumentsApi.Repository.Interfaces;
 using DocumentsApi.Services;
@@ -27,6 +28,8 @@ namespace DocumentsApi
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<DocumentsApiContext>(options => options.UseSqlServer(connection, b => b.MigrationsAssembly("DocumentsApi.Database")));
             builder.Services.AddScoped<IDocumentsRepository, DocumentsRepository>();
+            //builder.Services.AddMessageHandlers(typeof(DocumentPublishHandler).Assembly);
+
             builder.Services.AddLsb<ICloudBus, CloudBus>(
                 builder.Configuration.GetSection("CloudLsb"),
                 (namedQueueFactgory, svcProvider, lsbSettings, log) => namedQueueFactgory
